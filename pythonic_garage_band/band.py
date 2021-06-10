@@ -9,25 +9,47 @@ from abc import abstractmethod
 
 
 class Band:
-    bands_arr = []
+    instances = []
 
     def __init__(self, name, members):
         self.name = name
         self.members = members
-        self.bands_arr.append(self.members)
+        self.instances.append(self)
 
     def play_solos(self):
+        return ["face melting guitar solo", "bom bom buh bom", "rattle boom crash"]
 
-        return ["face melting guitar solo", "bom bom buh bom", "bom bom buh bom"]
+    @abstractmethod
+    def __str__(self):
+        return f" band {self.name}"
 
+    @abstractmethod
+    def __repr__(self):
+       return f"{self.name}"
     @classmethod
     def to_list(cls):
-        return cls.bands_arr
+        return cls.instances
 
 
 class Musician:
     def __init__(self, name):
         self.name = name
+    
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __repr__(self):
+        pass
+
+    @abstractmethod
+    def get_instrument(self):
+        pass
+
+    @abstractmethod
+    def  play_solo(self):
+        pass
 
 
 class Guitarist(Musician):
